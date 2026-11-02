@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff8fc4">
+<title>طيفة | خل نستذكر أحلى أيام</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+:root{--pink:#ff72b6;--deep:#df438e;--pale:#fff0f7;--rose:#ffc2df;--ink:#713653}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Cairo',sans-serif;color:var(--ink);background:radial-gradient(circle at 20% 10%,#fff 0,#ffe4f1 35%,#ffd0e7 75%,#ffb7da 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#fff 1.5px,transparent 1.5px);background-size:28px 28px;z-index:-1}
+#intro{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;padding:24px;background:linear-gradient(145deg,#ffb5d8,#ffeaf4 55%,#ff8fc4);transition:opacity .8s,visibility .8s}
+#intro.hide{opacity:0;visibility:hidden}
+.intro-card{max-width:520px;width:100%;padding:35px 22px;border:3px solid white;border-radius:35px;background:#fff9;box-shadow:0 20px 60px #c33d7c33;backdrop-filter:blur(10px)}
+.intro-card .kitty{font-size:56px;display:block;animation:bob 2s infinite}
+.intro-card h1{font-size:clamp(27px,7vw,42px);margin:12px 0;color:#d83e8b}
+.intro-card p{font-size:17px}
+#openBtn,.music-btn{border:0;border-radius:999px;background:linear-gradient(135deg,#ff5eaa,#e83d91);color:#fff;padding:14px 28px;font:700 16px 'Cairo';box-shadow:0 8px 20px #dc438c55;cursor:pointer}
+header{min-height:390px;position:relative;display:grid;place-items:center;text-align:center;padding:45px 18px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://i.ibb.co/1t0r5kQ5/1772878931535.png') center 35%/cover no-repeat;opacity:.20;filter:saturate(.8);transform:scale(1.08);animation:floatbg 18s ease-in-out infinite alternate}
+header:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#ffe5f2a8,#ffeaf5ee)}
+.hero-content{position:relative;z-index:1;max-width:850px}
+.hero-content .tiny{font-size:36px}
+h1,h2,h3,p{line-height:1.9}
+.hero-content h1{font-size:clamp(30px,7vw,55px);color:#d83e8b;margin:4px 0}
+.hero-content p{font-size:clamp(16px,3vw,21px);margin:4px}
+main{max-width:1000px;margin:auto;padding:10px 16px 70px}
+.section{position:relative;margin:30px auto;padding:25px 20px;border:2px solid #ff9ccc;border-radius:28px;background:#fff9;box-shadow:0 12px 30px #c94e8730;backdrop-filter:blur(7px)}
+.section h2{text-align:center;color:#d83e8b;font-size:clamp(22px,5vw,31px);margin:0 0 18px}
+.section p{font-size:17px;white-space:normal;margin:12px 0}
+.sticker{position:absolute;font-size:30px;opacity:.9;filter:drop-shadow(0 4px 5px #d94a9233);animation:bob 3s ease-in-out infinite}
+.s1{top:-17px;right:18px}.s2{bottom:-18px;left:20px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:18px;margin-top:20px}
+.polaroid{position:relative;background:#fff;padding:9px 9px 15px;border:3px solid #ff9ccc;border-radius:13px;box-shadow:0 8px 17px #c64b8730;transform:rotate(var(--r,1deg));transition:.25s}
+.polaroid:before{content:"";position:absolute;top:-11px;left:50%;width:13px;height:13px;border-radius:50%;background:#e84d9a;border:2px solid #fff;box-shadow:0 2px 4px #7c3150;z-index:2}
+.polaroid:hover{transform:rotate(0) scale(1.035)}
+.polaroid img{width:100%;height:155px;object-fit:cover;border-radius:7px;display:block;border:2px solid #ffd0e6}
+.polaroid figcaption{text-align:center;font-size:12px;padding-top:7px;color:#a84c78}
+.big-photo{max-width:680px;margin:24px auto;padding:12px;background:#fff;border:4px solid #ff91c5;border-radius:20px;box-shadow:0 14px 35px #bc4b8133;transform:rotate(-.5deg)}
+.big-photo img{display:block;width:100%;max-height:440px;object-fit:cover;border-radius:12px;border:3px solid #ffc0df}
+.big-photo figcaption{text-align:center;padding:8px}
+.quote{font-size:clamp(25px,6vw,42px)!important;font-weight:900;text-align:center;color:#d83288;background:linear-gradient(135deg,#fff0f7,#ffd4e9);border:2px dashed #f17bb5;border-radius:25px;padding:24px 12px;margin:25px 0!important;text-shadow:0 2px #fff}
+.soft-note{background:#fff0f7;border-right:5px solid #f27ab5;padding:14px 16px;border-radius:15px}
+footer{text-align:center;padding:30px 15px;color:#a14b75}
+#musicControl{position:fixed;bottom:15px;left:15px;z-index:20;display:none}
+#stickers{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.flying{position:absolute;left:var(--x);top:var(--y);font-size:var(--size);animation:burst 2.8s ease-out forwards}
+.heart{position:fixed;z-index:0;pointer-events:none;animation:rise 8s linear infinite;opacity:.5}
+@keyframes bob{50%{transform:translateY(-9px) rotate(4deg)}}
+@keyframes floatbg{to{transform:scale(1.18) translateY(-12px)}}
+@keyframes burst{0%{transform:translate(0,0) scale(.2) rotate(0);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(300deg);opacity:0}}
+@keyframes rise{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+@media(max-width:520px){.section{padding:20px 15px}.section p{font-size:15.5px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.polaroid img{height:135px}header{min-height:340px}}
+</style>
+</head>
+<body>
+<div id="intro">
+ <div class="intro-card">
+  <span class="kitty">🎀🐱💗</span>
+  <h1>يا طيوفة… خل نستذكر أحلى أيام</h1>
+  <p>دوسي هنا، وخلي الذكريات تفتح بابها بهدوء 💕</p>
+  <button id="openBtn">يلا نبدأ الذكريات ✨</button>
+  <p style="font-size:12px">الموسيقى تبدأ بعد الضغط على الزر</p>
+ </div>
+</div>
+<div id="stickers"></div>
+<audio id="song" src="https://cdn.dbimg.app/q3dEq8u1.mp3" preload="none" loop></audio>
+<button id="musicControl" class="music-btn">⏸ إيقاف / تشغيل الموسيقى</button>
+
+<header>
+ <div class="hero-bg"></div>
+ <div class="hero-content">
+  <div class="tiny">🎀 🌸 🐱 💗</div>
+  <h1>يا الله يطيوف</h1>
+  <p>يا أحلى أيام… هيّه أيامج أولاًاا</p>
+  <p>نتمنالج التوفيق بعون الله 💕</p>
+ </div>
+</header>
+
+<main>
+ <section class="section">
+  <span class="sticker s1">🎀</span><span class="sticker s2">🐱💗</span>
+  <h2>رسالة التوفيق 🌷</h2>
+  <p>يا أحلى أيام هيّه أيامج أولاًاا، نتمنالج التوفيق بعون الله 💕</p>
+  <p>أي شحجيلج حتى أحجيلج؟ هواي حجي عندي، يا طيفة الحجي هواي، بس نستذكر سوه كم شغلة…</p>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">🧸</span>
+  <h2>أيام العشوائيات 🎮</h2>
+  <p>إي نبديها من العشوائيات، أيام لعبنا سوه والصور والتعديلات.</p>
+  <div class="gallery">
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/1t0r5kQ5/1772878931535.png"><figcaption>من ذكريات اللعب</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/9mRxvRXg/brgame-screenshot-20250813210816.jpg"><figcaption>لقطة من أيامنا</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/JSTMcGC/brgame-screenshot-20260426181435.jpg"><figcaption>العشوائيات الحلوة</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/0p3h345D/brgame-screenshot-20260429144549.jpg"><figcaption>ضحكات ولقطات</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/0jQRRYpH/file-00000000560c722f9f3a450791317f1d.png"><figcaption>ذكرى ثانية</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/tpYcB2pG/file-0000000059fc720a9139c4066f4138ef.png"><figcaption>ما تنعاد</figcaption></figure>
+  </div>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">📞</span>
+  <h2>أيام الاتصالات 📱</h2>
+  <p>لو أيام الاتصالات الي جنه كل وكتنا، محد يعيف الثاني…</p>
+  <div class="gallery">
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/PvPBxFdC/IMG-20260311-043134-691.jpg"><figcaption>مكالمة وذكرى</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/BVBvjQ1w/IMG-20260311-043133-927.jpg"><figcaption>وقت طويل بالحچي</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/d45WbFth/IMG-20260506-235348-399.jpg"><figcaption>سوالف ما تخلص</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/rGvsv5h6/Screenshot-Ayu-Gram.jpg"><figcaption>اتصال ثاني</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/MkLQTwf2/Screenshot-Ayu-Gram.jpg"><figcaption>لحظات عفوية</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/jXSDJHy/Screenshot-Ayu-Gram.jpg"><figcaption>من الأرشيف</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/wr80vvc1/Screenshot-Ayu-Gram.jpg"><figcaption>ذكرى اتصال</figcaption></figure>
+  </div>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">🎀</span>
+  <h2>لو صور التطقيم… أخخ 😔</h2>
+  <div class="gallery">
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/8Qv0ZCC/IMG-20250916-010155-897.jpg"><figcaption>تطقمنا</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/SD5pRHzg/IMG-20250916-010153-366.jpg"><figcaption>نفس الذوق</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/zVCmqrjb/IMG-20250919-171724-102.jpg"><figcaption>لقطة من اللعبة</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/NgqLppXF/IMG-20250919-161844-043.jpg"><figcaption>ستايلنا</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/Q7TvQJtj/IMG-20250223-185144-147.jpg"><figcaption>من الألبوم</figcaption></figure>
+   <figure class="polaroid"><img loading="lazy" src="https://i.ibb.co/XkM6gTmT/IMG-20250223-175535-935.jpg"><figcaption>ذكرى حلوة</figcaption></figure>
+  </div>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">💗</span><span class="sticker s2">🌷</span>
+  <h2>أحلى الأيام 💞</h2>
+  <p>لج أيامنا كلش حلوه وكضيناها حب عل فطره وعل كد نياتنا وضحك وسالفه وكلشي سوه. أحلى أيام أيامج بحياتي، وتعرفت عل هواي بنات صح وهاي قابلت غيرج، بس مالكيت وحده أخذت لو 10٪ منج ومن حنانج ومن كلشي.</p>
+  <figure class="big-photo">
+   <img loading="lazy" src="https://i.ibb.co/G3WKSH0Z/1773336740930.png" alt="صورة كبيرة من الذكريات">
+   <figcaption>صورة إلها مكانها بين الذكريات 💗</figcaption>
+  </figure>
+  <p>وتعرفت عل أخواتج ورده مال الله، انتِ وعائلتج كلها، من أبوح أبو قلب الطيب لو براء الطيبه الخلوقه لو زينب حبابه وورده مال الله، وباقي أخواتج مو كلش أعرفهم بس ماشفت بيهم اله الشي الطيب، وأي مشكله سمعتها عدكم كتلج لصالحج 💕</p>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">🥺</span>
+  <h2>كلام من القلب…</h2>
+  <p>وهنا ماتوقعت بيوم من الأيام يجي هل يوم وأشوفج مرتبطه، ومن خوفي ومحبتي الج أصير أني مصدر الإزعاج.</p>
+  <p>حتى هنا أوافقج بل قرار صحيح، كل كلامج بس شما جنت أني رزن الكلب يدفع أسوي شغلات هواي، أدري صعب تتقبليها بس مابيدي حيله.</p>
+  <p>بل أخير خسرتج وخسرت ثقتج وخسرت كل محبتي وكل الي سويته كل هذيج الأيام.</p>
+  <p>بس الله شاهد بيناتنا ماحجيت عليج ومطلعتج بس بأحلى وجه، ولا حتى من عفتيني ماكلت أني حظرتها خل تولي أو جذبت بشي، ومن عاتبوني كلتلهم أحلى أيام حياتي عشتها وياها، ماكو داعي لأي كلام أكطع.</p>
+  <p>وما خليت أحد يحظرج بس لأن ماردتهم يشوفون ستورياتج أو شي غير، أو فد شي… الغيره طبعاً جانت تقرا 100000.</p>
+ </section>
+
+ <section class="section">
+  <span class="sticker s1">💔</span><span class="sticker s2">🐱🎀</span>
+  <h2>آخر الذكريات…</h2>
+  <p>وهنا أكلج أني بعد خلصت كل محاولاتي، صحيح وانتِ ارتبطتي وحاولت ماقصر وياج بكلشي، بعد أني إذا جنت كل هذاك السويته حتى متراسلين واحد.</p>
+  <p>هوه كله فشل، بس شلون أقبل أراسلج وانتِ أصلاً مريدتني وحاظرتني، وأني أمانه لله أدري إذا ماراسل انتِ بعد ماتسئلين عليّ خلاص.</p>
+  <p>بس بعد نتقبل واقع حال، ونسحب… مدري إذا جان هاي آخر فضفضه وياج، بس حسويها ذكرى حلوه.</p>
+  <p>ووَحاول أبتعد عن براء هم، خاف باجر عكبه اجتي حجايه تضرج ماروح أحجيها أبد. وأني كلشي يذكرني بيج أضوج عليه، بس عادي.</p>
+  <p class="soft-note">باقي مثل ماكتلج قبل ولهسه… أتمنالج الخير والتوفيق، وتبقى الذكريات الحلوة حلوة بدون ما تثقل على أحد 💗</p>
+  <p class="quote">أهم شي جان عندي ضحكتج 💗</p>
+  <p>وهااا ماناسي الخوذه، إن شاء الله حتى لو جنت مموجود شوكت ميصير فرصه قبل لتروح تلكين شدات بل حساب والكاج لابستها إذا طلعت عود 🤣</p>
+ </section>
+ <footer>صُنعت بكل الألوان الوردية… حتى تبقى الذكريات ذكرى لطيفة 🎀🐱💕</footer>
+</main>
+<script>
+const song=document.getElementById('song');
+const intro=document.getElementById('intro');
+const stickers=document.getElementById('stickers');
+const musicControl=document.getElementById('musicControl');
+const stickerSet=['🎀','🐱','💗','💕','🌸','🩷','✨','🎀','🐾','💞'];
+function burst(){
+ for(let i=0;i<34;i++){
+  const el=document.createElement('span');el.className='flying';
+  el.textContent=stickerSet[Math.floor(Math.random()*stickerSet.length)];
+  el.style.setProperty('--x',Math.random()*100+'vw');
+  el.style.setProperty('--y',Math.random()*100+'vh');
+  el.style.setProperty('--dx',(Math.random()*500-250)+'px');
+  el.style.setProperty('--dy',(Math.random()*600-300)+'px');
+  el.style.setProperty('--size',(22+Math.random()*30)+'px');
+  stickers.appendChild(el);setTimeout(()=>el.remove(),3000);
+ }
+}
+document.getElementById('openBtn').addEventListener('click',async()=>{
+ intro.classList.add('hide');burst();musicControl.style.display='block';
+ try{await song.play()}catch(e){musicControl.textContent='اضغطي لتشغيل الموسيقى 🎵'}
+});
+musicControl.addEventListener('click',async()=>{
+ if(song.paused){try{await song.play();musicControl.textContent='⏸ إيقاف / تشغيل الموسيقى'}catch(e){}}
+ else{song.pause();musicControl.textContent='▶ تشغيل الموسيقى'}
+});
+setInterval(()=>{
+ const h=document.createElement('span');h.className='heart';h.textContent=['♡','💗','✧','🎀'][Math.floor(Math.random()*4)];
+ h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*22)+'px';h.style.animationDuration=(7+Math.random()*6)+'s';
+ document.body.appendChild(h);setTimeout(()=>h.remove(),14000);
+},1100);
+document.querySelectorAll('.polaroid').forEach((el,i)=>el.style.setProperty('--r',((i%2?1:-1)*(1+Math.random()*3))+'deg'));
+</script>
+</body>
+</html>
